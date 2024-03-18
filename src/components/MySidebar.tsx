@@ -9,9 +9,9 @@ import { NavLink } from "react-router-dom";
 function MySidebar() {
   return (
     <div>
-      <Sidebar className="w-52 fixed z-10 left-0 top-[60px]  min-h-[90.5vh] md:min-h-[90.5vh] lg:h-[91.4vh] rounded-none bg-slate-100 dark:bg-slate-900 pl-2 hidden sm:flex">
-        <Sidebar.Items className="rounded-none flex flex-col dark:bg-slate-900 ">
-          <Sidebar.ItemGroup className=" py-0 pt-12  flex flex-col gap-2">
+      <Sidebar className="w-52 fixed z-10 left-0 top-[60px]  min-h-[90.5vh] md:min-h-[90.5vh] lg:h-[91.4vh] rounded-none bg-slate-200 dark:bg-slate-900 pl-2 hidden sm:flex py-0 px-0">
+        <Sidebar.Items className="rounded-none flex flex-col  py-0 px-0">
+          <Sidebar.ItemGroup className=" py-0 pt-12  flex flex-col gap-2 ">
             <NavLink to="/">
               <Sidebar.Item className="flex justify-start">
                 <div className="flex gap-1 sm:gap-3">
@@ -30,7 +30,7 @@ function MySidebar() {
             </NavLink>
           </Sidebar.ItemGroup>
 
-          <Sidebar.ItemGroup className="flex flex-col gap-2 pt-[57vh] md:pt-[57vh] lg:pt-[59vh] xl:pt-[50vh]">
+          <Sidebar.ItemGroup className="flex flex-col gap-2 pt-[57vh] md:pt-[57vh] lg:pt-[59vh] xl:pt-[50vh] ">
             <Sidebar.Item className="flex justify-start">
               <div className="flex gap-1 sm:gap-3">
                 <VscColorMode className="text-[32px]" />

@@ -135,7 +135,7 @@ const Products = () => {
         st.name.toLowerCase().includes(search.toLowerCase()) ||
         st.category.toLowerCase().includes(search.toLowerCase())
       // st.email.toLowerCase().includes(search.toLowerCase()) ||
-      // st.category.toLowerCase().includes(search.toLowerCase())
+      // st.description.toLowerCase().includes(search.toLowerCase())
     );
 
     if (category !== "all") {
@@ -211,7 +211,7 @@ const Products = () => {
     <div className="ml-48 mt-[60px]">
       {/* Edit MODAL */}
       <Modal
-        className="z-30 w-[500px] p-4 rounded"
+        className="z-30 w-[500px] p-4 rounded "
         dismissible
         show={editModalOpen}
         onClose={() => setEditModalOpen(false)}
@@ -418,85 +418,94 @@ const Products = () => {
         </div>
       </Modal>
 
-      <div className="flex m-8 justify-between">
-        <p className="text-3xl">Products</p>
-        <input
-          className="w-96 p-2 outline-none rounded-lg"
-          type="search"
-          placeholder="Search product..."
-          value={searchProduct}
-          onChange={handleSearchChange}
-        />
-        <select
-          className="rounded-lg outline-none p-2"
-          name="select"
-          id="select"
-          value={selectedGroup}
-          onChange={handleGroupChange}
+      <div>
+        <div className="flex m-8 justify-between dark:bg-[#252e45]">
+          <p className="text-3xl dark:text-slate-200">Products</p>
+          <input
+            className="w-96 p-2 outline-none rounded-lg"
+            type="search"
+            placeholder="Search product..."
+            value={searchProduct}
+            onChange={handleSearchChange}
+          />
+          <select
+            className="rounded-lg outline-none p-2"
+            name="select"
+            id="select"
+            value={selectedGroup}
+            onChange={handleGroupChange}
+          >
+            <option value="all">All</option>
+            <option value="Furniture">Furniture</option>
+            <option value="Homeware">Homeware</option>
+            <option value="Sofas">Sofas</option>
+            <option value="Light fittings">Light fittings</option>
+            <option value="Accessories">Accessories</option>
+          </select>
+        </div>
+        {/* TABLE Main */}
+        <Table
+          className="ml-12 mt-2 dark:text-slate-100 bg-slate-50 dark:bg-[#252e45]"
+          hoverable
+          style={{ width: "1240px" }}
         >
-          <option value="all">All</option>
-          <option value="Furniture">Furniture</option>
-          <option value="Homeware">Homeware</option>
-          <option value="Sofas">Sofas</option>
-          <option value="Light fittings">Light fittings</option>
-          <option value="Accessories">Accessories</option>
-        </select>
+          <Table.Head>
+            <Table.HeadCell>N/o</Table.HeadCell>
+            <Table.HeadCell>Image</Table.HeadCell>
+            <Table.HeadCell>Title</Table.HeadCell>
+            <Table.HeadCell>Price</Table.HeadCell>
+            <Table.HeadCell>Description</Table.HeadCell>
+            <Table.HeadCell>Category</Table.HeadCell>
+            <Table.HeadCell className="text-center">Activity</Table.HeadCell>
+          </Table.Head>
+          {filteredProducts.map((product, index) => (
+            <Table.Body className=" mt-2" key={product.id}>
+              <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800 pt-2">
+                <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                  <p className="flex justify-center"> {index + 1}</p>{" "}
+                </Table.Cell>
+                <Table.Cell className="">
+                  <img
+                    src={product.image}
+                    alt="Product"
+                    className="w-12 h-12"
+                  />
+                </Table.Cell>
+                <Table.Cell className="">
+                  <p className="flex justify-center">{product.name}</p>
+                </Table.Cell>
+                <Table.Cell className="">
+                  <p className="flex justify-center">{product.price}</p>
+                </Table.Cell>
+                <Table.Cell className="">
+                  <p className="flex justify-center">{product.description}</p>
+                </Table.Cell>
+                <Table.Cell>
+                  <p className="flex justify-center">{product.category}</p>
+                </Table.Cell>
+                <Table.Cell className="flex gap-3 justify-center items-center">
+                  <div className="flex gap-2 pt-2">
+                    <button
+                      className="text-green-700 hover:text-white border border-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5  text-center dark:border-green-500 dark:text-green-500 dark:hover:text-white dark:hover:bg-green-600 dark:focus:ring-green-900"
+                      onClick={() => handleEdit(product)}
+                    >
+                      Edit
+                    </button>
+
+                    <Button
+                      className="text-red-700 hover:text-white border px-3 border-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm   text-center dark:border-red-500 dark:text-red-500 dark:hover:text-white dark:hover:bg-red-600 dark:focus:ring-red-900"
+                      onClick={() => handleDelete(product.id)}
+                    >
+                      Delete
+                    </Button>
+                  </div>
+                </Table.Cell>
+              </Table.Row>
+            </Table.Body>
+          ))}
+        </Table>
+        {/* TABLE Main */}
       </div>
-      {/* TABLE Main */}
-      <Table className="ml-12 mt-2" hoverable style={{ width: "1240px" }}>
-        <Table.Head>
-          <Table.HeadCell>N/o</Table.HeadCell>
-          <Table.HeadCell>Image</Table.HeadCell>
-          <Table.HeadCell>Name</Table.HeadCell>
-          <Table.HeadCell>Price</Table.HeadCell>
-          <Table.HeadCell>Description</Table.HeadCell>
-          <Table.HeadCell>Category</Table.HeadCell>
-          <Table.HeadCell className="text-center">Activity</Table.HeadCell>
-        </Table.Head>
-        {filteredProducts.map((product, index) => (
-          <Table.Body className=" mt-2" key={product.id}>
-            <Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800 ">
-              <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                <p className="flex justify-center"> {index + 1}</p>{" "}
-              </Table.Cell>
-              <Table.Cell className="">
-                <img src={product.image} alt="Product" className="w-12 h-12" />
-              </Table.Cell>
-              <Table.Cell className="">
-                <p className="flex justify-center">{product.name}</p>
-              </Table.Cell>
-              <Table.Cell className="">
-                <p className="flex justify-center">{product.price}</p>
-              </Table.Cell>
-              <Table.Cell className="">
-                <p className="flex justify-center">{product.description}</p>
-              </Table.Cell>
-              <Table.Cell>
-                <p className="flex justify-center">{product.category}</p>
-              </Table.Cell>
-              <Table.Cell className="flex gap-3 justify-center">
-                <div className="flex gap-2">
-                  <Button
-                    outline
-                    color="warning"
-                    onClick={() => handleEdit(product)}
-                  >
-                    Edit
-                  </Button>
-                  <Button
-                    outline
-                    color="failure"
-                    onClick={() => handleDelete(product.id)}
-                  >
-                    Delete
-                  </Button>
-                </div>
-              </Table.Cell>
-            </Table.Row>
-          </Table.Body>
-        ))}
-      </Table>
-      {/* TABLE Main */}
       <button
         onClick={() => setOpenModal(true)}
         className="rounded-full w-16 h-16 bg-blue-600 text-6xl text-white fixed flex justify-center items-center  pb-5 ml-80 right-12 bottom-9 "

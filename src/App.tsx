@@ -14,7 +14,7 @@ const App = () => {
     <div className="max-h-screen">
       <Router>
         <Header />
-        <div className="flex">
+        <div className="flex bg-slate-50 dark:bg-[#252e45]">
           <MySidebar />
           <Routes>
             <Route path="/dashboard" element={<Dashboard />} />

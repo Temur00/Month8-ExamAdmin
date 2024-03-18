@@ -7,10 +7,7 @@ import { MainLogo } from "../assets";
 
 function Header() {
   return (
-    <Navbar
-      fluid
-      className="fixed z-10 top-0 left-0 right-0  bg-slate-100 dark:bg-slate-900"
-    >
+    <Navbar fluid className="fixed z-10 top-0 left-0 right-0  bg-slate-200 ">
       <Navbar.Brand>
         <Link className="flex" to={"/"}>
           <img src={MainLogo} className="mr-3 h-8   w-10 sm:h-10" alt="Logo" />
